@@ -9,16 +9,10 @@ namespace qsign
     {
         public Main()
         {
-
             InitializeComponent();
-
         }
-
         private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        { }
         private void write_config(string config_path)
         {
             string json = File.ReadAllText(config_path);
@@ -27,8 +21,6 @@ namespace qsign
             jo["key"] = textBox3.Text;
             string json1 = jo.ToString();
             File.WriteAllText(config_path, json1);
-
-
         }
         private string get_target_id(int port)
         {
@@ -51,11 +43,18 @@ namespace qsign
                 string[] parts = line.Split(" ", StringSplitOptions.RemoveEmptyEntries);
                 if (parts.Length > 4)
                 {
-                    result.Add(new Dictionary<string, string>(){
-                              {"pid", parts[4]},
-                              {"address", parts[1]},
-                              {"state", parts[3]}
-                            });
+                    result.Add(new Dictionary<string, string>()
+                    {
+                        {
+                            "pid", parts[4]
+                        },
+                        {
+                            "address", parts[1]
+                        },
+                        {
+                            "state", parts[3]
+                        }
+                    });
                 }
             }
             string targetPid = "";
@@ -81,7 +80,6 @@ namespace qsign
                     if (((int)httpWebResponse.StatusCode) == 200)
                     {
                         checknum += 1;
-
                         label5.Invoke((Action)(() =>
                         {
                             label5.Text = "正在运行";
@@ -94,7 +92,6 @@ namespace qsign
                                 }
                             }
                         }));
-
                     }
                     else
                     {
@@ -103,7 +100,6 @@ namespace qsign
                             label5.Text = "状态异常 " + httpWebResponse.StatusCode.ToString();
                             label5.ForeColor = Color.Red;
                         }));
-
                     }
                     httpWebResponse.Close();
                 }
@@ -120,13 +116,8 @@ namespace qsign
                     Thread.Sleep(1000);
                 }
                 catch
-                {
-
-                }
-
+                { }
             }
-
-
         }
         Thread newThread;
         Thread CheckThread;
@@ -179,13 +170,14 @@ namespace qsign
                     MessageBox.Show("端口被占用，请更换端口号再试", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                int[] banned_port = { 1, 7, 9, 11, 13, 15, 17, 19, 20, 21, 22, 23, 25, 37, 42, 43, 53, 77, 79, 87, 95, 101, 102, 103, 104, 109, 110, 111, 113, 115, 117, 119, 123, 135, 139, 143, 179, 389, 465, 512, 513, 514, 515, 526, 530, 531, 532, 540, 556, 563, 587, 601, 636, 993, 995, 2049, 3659, 4045, 6000, 6665, 6666, 6667, 6668, 6669 };
+                int[] banned_port = {
+                    1, 7, 9, 11, 13, 15, 17, 19, 20, 21, 22, 23, 25, 37, 42, 43, 53, 77, 79, 87, 95, 101, 102, 103, 104, 109, 110, 111, 113, 115, 117, 119, 123, 135, 139, 143, 179, 389, 465, 512, 513, 514, 515, 526, 530, 531, 532, 540, 556, 563, 587, 601, 636, 993, 995, 2049, 3659, 4045, 6000, 6665, 6666, 6667, 6668, 6669
+                };
                 if (banned_port.Contains<int>(port))
                 {
                     MessageBox.Show("非安全端口，请更换端口号再试", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
                 verison = comboBox1.Text;
                 write_config(currentDirectory + "\\txlib\\" + comboBox1.Text + "\\config.json");
                 flag = true;
@@ -203,15 +195,12 @@ namespace qsign
                 flag = false;
                 if (newThread.IsAlive)
                 {
-
                     string targetPid = get_target_id(port);
                     if (targetPid != "")
                     {
                         System.Diagnostics.Debug.WriteLine(targetPid);
                         var fileName = "cmd";
                         var arguments = "/c taskkill /F /PID " + targetPid;
-
-                        // 创建进程启动信息
                         var processStartInfo = new ProcessStartInfo()
                         {
                             FileName = fileName,
@@ -220,8 +209,6 @@ namespace qsign
                             CreateNoWindow = true,
                             UseShellExecute = false
                         };
-
-                        // 执行命令
                         var process1 = Process.Start(processStartInfo);
                         process1.WaitForExit();
                         while (newThread.IsAlive)
@@ -236,34 +223,22 @@ namespace qsign
                     textBox2.AppendText("\nServer已停止");
                 }
             }
-
-
-
-
-
-
-
-
-
-
         }
         private void NewThread()
         {
             RunCmd();
         }
-
         private void RunCmd()
         {
             string currentDirectory = Environment.CurrentDirectory;
             Process process = new Process();
-            process.StartInfo.UseShellExecute = false; //必要参数
-            process.StartInfo.RedirectStandardOutput = true;//输出参数设定
-            process.StartInfo.RedirectStandardInput = true;//传入参数设定
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.RedirectStandardOutput = true;
+            process.StartInfo.RedirectStandardInput = true;
             process.StartInfo.CreateNoWindow = true;
             process.StartInfo.FileName = "cmd.exe";
             process.Start();
             process.StandardInput.WriteLine("call bin\\unidbg-fetch-qsign.bat --basePath=txlib\\" + verison);
-            //process.StandardInput.AutoFlush = true;
             while (!process.StandardOutput.EndOfStream & flag)
             {
                 string t = "";
@@ -281,35 +256,22 @@ namespace qsign
                     {
                         textBox2.AppendText(t + "\n");
                     }));
-
                 }
-
-
             }
             process.Kill();
-
-
         }
-
         private void Main_Load(object sender, EventArgs e)
         {
             string currentDirectory = Environment.CurrentDirectory;
             string path = currentDirectory + "\\txlib";
             string[] folders = Directory.GetDirectories(path);
-
             foreach (string folder in folders)
             {
                 comboBox1.Items.Add(folder.Replace(currentDirectory + "\\txlib\\", ""));
             }
-
-
-
-
         }
-
         private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
         {
-
             string currentDirectory = Environment.CurrentDirectory;
             string config_path = currentDirectory + "\\txlib\\" + comboBox1.Text + "\\config.json";
             if (!File.Exists(config_path))
@@ -324,12 +286,8 @@ namespace qsign
             textBox1.Text = port.ToString();
             textBox3.Text = key;
         }
-
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        { }
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (flag)
@@ -339,14 +297,12 @@ namespace qsign
                     flag = false;
                     if (newThread.IsAlive)
                     {
-
                         string targetPid = get_target_id(port);
                         if (targetPid != "")
                         {
                             System.Diagnostics.Debug.WriteLine(targetPid);
                             var fileName = "cmd";
                             var arguments = "/c taskkill /F /PID " + targetPid;
-
                             // 创建进程启动信息
                             var processStartInfo = new ProcessStartInfo()
                             {
@@ -356,7 +312,6 @@ namespace qsign
                                 CreateNoWindow = true,
                                 UseShellExecute = false
                             };
-
                             // 执行命令
                             var process1 = Process.Start(processStartInfo);
                             process1.WaitForExit();
@@ -378,7 +333,6 @@ namespace qsign
                 }
             }
         }
-
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start(new ProcessStartInfo()
@@ -386,19 +340,15 @@ namespace qsign
                 FileName = "https://github.com/fuqiuluo/unidbg-fetch-qsign",
                 UseShellExecute = true
             });
-            //System.Diagnostics.Process.Start("https://github.com/fuqiuluo/unidbg-fetch-qsign");
         }
-
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start(new ProcessStartInfo()
             {
-                FileName = "https://github.com/CikeyQi/unidbg-fetch-qsign",
+                FileName = "https://github.com/CikeyQi/unidbg-fetch-qsign-gui",
                 UseShellExecute = true
             });
-            // System.Diagnostics.Process.Start("https://github.com/CikeyQi/unidbg-fetch-qsign");
         }
-
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start(new ProcessStartInfo()
@@ -406,7 +356,6 @@ namespace qsign
                 FileName = "https://jq.qq.com/?_wv=1027&k=FZUabhdf",
                 UseShellExecute = true
             });
-            //System.Diagnostics.Process.Start("https://jq.qq.com/?_wv=1027&k=FZUabhdf");
         }
     }
 }
