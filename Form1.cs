@@ -189,6 +189,10 @@ namespace qsign
                 newThread.Start();
                 CheckThread.IsBackground = true;
                 CheckThread.Start();
+                comboBox1.Enabled = false;
+                textBox1.Enabled = false;
+                textBox3.Enabled = false;
+
             }
             else
             {
@@ -221,6 +225,9 @@ namespace qsign
                     label5.Text = "Œ¥∆Ù∂Ø";
                     label5.ForeColor = Color.Black;
                     textBox2.AppendText("\nServer“—Õ£÷π");
+                    comboBox1.Enabled = true;
+                    textBox1.Enabled = true;
+                    textBox3.Enabled = true;
                 }
             }
         }

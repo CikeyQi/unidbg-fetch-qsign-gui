@@ -203,7 +203,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(2, 3, 2, 3);
             Name = "Main";
-            Text = "unidbg-fetch-qsign-gui  v1.0.0";
+            Text = "unidbg-fetch-qsign-gui  v1.0.1";
             FormClosing += Main_FormClosing;
             Load += Main_Load;
             ResumeLayout(false);

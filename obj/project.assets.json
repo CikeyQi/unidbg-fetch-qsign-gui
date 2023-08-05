@@ -60,11 +60,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\qsign\\qsign.csproj",
+      "projectUniqueName": "F:\\unidbg-fetch-qsign-gui\\qsign.csproj",
       "projectName": "qsign",
-      "projectPath": "D:\\qsign\\qsign.csproj",
+      "projectPath": "F:\\unidbg-fetch-qsign-gui\\qsign.csproj",
       "packagesPath": "C:\\Users\\31463\\.nuget\\packages\\",
-      "outputPath": "D:\\qsign\\obj\\",
+      "outputPath": "F:\\unidbg-fetch-qsign-gui\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\31463\\AppData\\Roaming\\NuGet\\NuGet.Config",
