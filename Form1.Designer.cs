@@ -45,12 +45,12 @@
             // 
             // comboBox1
             // 
-            comboBox1.Font = new Font("点字倔强黑", 14.9999981F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBox1.Font = new Font("Microsoft Sans Serif", 14.9999981F, FontStyle.Regular, GraphicsUnit.Point);
             comboBox1.FormattingEnabled = true;
             comboBox1.Location = new Point(116, 63);
             comboBox1.Margin = new Padding(2, 3, 2, 3);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(187, 34);
+            comboBox1.Size = new Size(187, 33);
             comboBox1.TabIndex = 0;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             comboBox1.SelectedValueChanged += comboBox1_SelectedValueChanged;
@@ -58,32 +58,32 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("点字倔强黑", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
             label1.Location = new Point(11, 114);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(96, 27);
+            label1.Size = new Size(96, 25);
             label1.TabIndex = 1;
             label1.Text = "监听端口";
             label1.Click += label1_Click;
             // 
             // textBox1
             // 
-            textBox1.Font = new Font("点字倔强黑", 14.9999981F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox1.Font = new Font("Microsoft Sans Serif", 14.9999981F, FontStyle.Regular, GraphicsUnit.Point);
             textBox1.Location = new Point(116, 114);
             textBox1.Margin = new Padding(2, 3, 2, 3);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(187, 34);
+            textBox1.Size = new Size(187, 30);
             textBox1.TabIndex = 2;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("点字倔强黑", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
             label2.Location = new Point(11, 63);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(96, 27);
+            label2.Size = new Size(96, 25);
             label2.TabIndex = 1;
             label2.Text = "协议版本";
             label2.Click += label1_Click;
@@ -91,7 +91,7 @@
             // button1
             // 
             button1.BackColor = Color.CornflowerBlue;
-            button1.Font = new Font("点字倔强黑", 14.9999981F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.Font = new Font("Microsoft Sans Serif", 14.9999981F, FontStyle.Regular, GraphicsUnit.Point);
             button1.ForeColor = Color.Transparent;
             button1.Location = new Point(11, 223);
             button1.Margin = new Padding(2, 3, 2, 3);
@@ -104,7 +104,7 @@
             // 
             // textBox2
             // 
-            textBox2.Font = new Font("点字倔强黑", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox2.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
             textBox2.ImeMode = ImeMode.NoControl;
             textBox2.Location = new Point(317, 18);
             textBox2.Margin = new Padding(2, 3, 2, 3);
@@ -118,32 +118,32 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("点字倔强黑", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
             label3.Location = new Point(11, 163);
             label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(96, 27);
+            label3.Size = new Size(96, 25);
             label3.TabIndex = 1;
             label3.Text = "注册密钥";
             label3.Click += label1_Click;
             // 
             // textBox3
             // 
-            textBox3.Font = new Font("点字倔强黑", 14.9999981F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox3.Font = new Font("Microsoft Sans Serif", 14.9999981F, FontStyle.Regular, GraphicsUnit.Point);
             textBox3.Location = new Point(116, 163);
             textBox3.Margin = new Padding(2, 3, 2, 3);
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(187, 34);
+            textBox3.Size = new Size(187, 30);
             textBox3.TabIndex = 2;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("点字倔强黑", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
             label5.Location = new Point(107, 18);
             label5.Margin = new Padding(2, 0, 2, 0);
             label5.Name = "label5";
-            label5.Size = new Size(75, 27);
+            label5.Size = new Size(75, 25);
             label5.TabIndex = 1;
             label5.Text = "未启动";
             label5.Click += label1_Click;
@@ -203,7 +203,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(2, 3, 2, 3);
             Name = "Main";
-            Text = "unidbg-fetch-qsign-gui  v1.0.1";
+            Text = "unidbg-fetch-qsign-gui  v1.0.2";
             FormClosing += Main_FormClosing;
             Load += Main_Load;
             ResumeLayout(false);
