@@ -3,7 +3,9 @@
     "host": "0.0.0.0",
     "port": 8080
   },
+  "share_token": true,
   "key": "114514",
+  "count": 10,
   "auto_register": true,
   "protocol": {
     "package_name": "com.tencent.mobileqq",
@@ -14,6 +16,7 @@
   "unidbg": {
     "dynarmic": false,
     "unicorn": true,
+    "kvm": false,
     "debug": true
   },
   "black_list": [
