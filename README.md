@@ -34,7 +34,7 @@
 - ![bot配置项路径](/readme/config.jpg)
 
 - 在底部添加：`sign_api_addr: 刚才点击确定复制的地址`
-（一般是http://127.0.0.1:端口/sign?key=密钥，icqq0.4.12以上需要使用ver指定版本）
+（一般是http://127.0.0.1:端口/sign?key=密钥，icqq建议升级到0.5.1版本以上才能自动匹配版本）
 
 - ![增加配置项](/readme/bot.jpg)
 
