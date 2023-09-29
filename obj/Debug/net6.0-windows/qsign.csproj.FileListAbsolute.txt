@@ -57,3 +57,4 @@ F:\unidbg-fetch-qsign-gui\obj\Debug\net6.0-windows\refint\qsign.dll
 F:\unidbg-fetch-qsign-gui\obj\Debug\net6.0-windows\qsign.pdb
 F:\unidbg-fetch-qsign-gui\obj\Debug\net6.0-windows\qsign.genruntimeconfig.cache
 F:\unidbg-fetch-qsign-gui\obj\Debug\net6.0-windows\ref\qsign.dll
+F:\unidbg-fetch-qsign-gui\bin\Debug\net6.0-windows\PingFang.ttf
