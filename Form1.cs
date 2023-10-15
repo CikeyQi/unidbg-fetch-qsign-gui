@@ -61,20 +61,21 @@ namespace qsign
                     if (((int)httpWebResponse.StatusCode) == 200)
                     {
                         checknum += 1;
-                        label5.Invoke((Action)(() =>
+                        this.Invoke((Action)(() =>
                         {
                             label5.Text = "正在运行";
                             DisplayResourceUsage(port);
                             label5.ForeColor = Color.Green;
-                            if (checknum == 1)
-                            {
-                                Add_log(DateTime.Now.ToString("HH:mm:ss:fff") + " [qsign]在http://127.0.0.1:" + port.ToString() + "上运行");
-                                if (MessageBox.Show("http://127.0.0.1:" + port.ToString() + "/sign?key=" + key + "\n点击确定复制Sign地址", "启动成功", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-                                {
-                                    Clipboard.SetDataObject("http://127.0.0.1:" + port.ToString() + "/sign?key=" + key);
-                                }
-                            }
+                            
                         }));
+                        if (checknum == 1)
+                        {
+                            Add_log(DateTime.Now.ToString("HH:mm:ss:fff") + " [qsign]在http://127.0.0.1:" + port.ToString() + "上运行");
+                            if (MessageBox.Show("http://127.0.0.1:" + port.ToString() + "/sign?key=" + key + "\n点击确定复制Sign地址", "启动成功", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                            {
+                                Clipboard.SetDataObject("http://127.0.0.1:" + port.ToString() + "/sign?key=" + key);
+                            }
+                        }
                     }
                     else
                     {
@@ -186,6 +187,7 @@ namespace qsign
                 write_config(currentDirectory + "\\txlib\\" + comboBox1.Text + "\\config.json");
                 flag = true;
                 checknum = 0;
+                richTextBox1.Clear();
                 newThread = new Thread(new ThreadStart(NewThread));
                 CheckThread = new Thread(new ThreadStart(check));
                 run_state = true;
@@ -263,15 +265,15 @@ namespace qsign
 
             process.StartInfo.CreateNoWindow = true;
             process.StartInfo.FileName = "cmd.exe";
+            ThreadPool.SetMaxThreads(1, 1);
             process.OutputDataReceived += (sender, args) =>
             {
                 if (!string.IsNullOrEmpty(args.Data))
                 {
-                    richTextBox1.Invoke((Action)(() =>
-                    {
-                        Add_log(args.Data + "\n");
-                    }
-                    ));
+                    
+                    ThreadPool.QueueUserWorkItem(new WaitCallback(Add_log), args.Data + "\n");
+                    
+                   
 
                 }
             };
@@ -279,11 +281,9 @@ namespace qsign
             {
                 if (!string.IsNullOrEmpty(args.Data))
                 {
-                    richTextBox1.Invoke((Action)(() =>
-                    {
-                        Add_log(args.Data + "\n");
-                    }
-                    ));
+
+                    ThreadPool.QueueUserWorkItem(new WaitCallback(Add_log), args.Data + "\n");
+
 
                 }
             };
@@ -295,11 +295,6 @@ namespace qsign
             {
                 Thread.Sleep(10);
             }
-        }
-        private void Main_Load(object sender, EventArgs e)
-        {
-
-
         }
         private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -411,53 +406,74 @@ namespace qsign
             });
         }
         int lenght;
-        private void Add_log(string logs)
+        private void Add_log(object stats)
         {
+            string logs = stats.ToString();
 
             string[] logss = logs.Split(new string[] { "\n" }, StringSplitOptions.None);
             if (logs == null || logs == "" || logs.Length == 0) { return; }
-            foreach (string log in logss)
+            richTextBox1.Invoke((Action)(() =>
             {
-                lenght = richTextBox1.Text.Length;
-                richTextBox1.AppendText(log + "\n");
-                int currentLength = richTextBox1.Lines.Length;
+                richTextBox1.AppendText(logs + "\n");
+                foreach (string log in logss)
+            {
+                
+                
+                
+               // int currentLength = richTextBox1.Lines.Length;
                 //int lineFirstCharIndex = richTextBox1.GetFirstCharIndexFromLine(currentLength);
                 //if (lineFirstCharIndex == -1) { return; }
-                richTextBox1.Select(lenght, (log + "\n").Length);
-                if (log.Contains("INFO"))
-                {
-                    richTextBox1.SelectionColor = Color.DeepSkyBlue;
+                //richTextBox1.Select(lenght, (log + "\n").Length);
+                //if (log.Contains("INFO"))
+                //{
+                //    richTextBox1.SelectionColor = Color.DeepSkyBlue;
 
-                    return;
-                }
-                if (log.Contains("DEBUG"))
-                {
-                    richTextBox1.SelectionColor = Color.White;
-                    return;
-                }
-                if (log.Contains("WARNING"))
-                {
-                    richTextBox1.SelectionColor = Color.FromArgb(255, 215, 0);
-                    return;
-                }
+                //    return;
+                //}
+                //if (log.Contains("DEBUG"))
+                //{
+                //    richTextBox1.SelectionColor = Color.White;
+                //    return;
+                //}
+                //if (log.Contains("WARNING"))
+                //{
+                //    richTextBox1.SelectionColor = Color.FromArgb(255, 215, 0);
+                //    return;
+                //}
 
-                if (log.Contains("ERROR") || log.Contains("Exception"))
-                {
-                    richTextBox1.SelectionColor = Color.Red;
-                    return;
-                }
-                if (log.Contains("[qsign]"))
-                {
-                    richTextBox1.SelectionColor = Color.FromArgb(255, 215, 0);
-                    return;
-                }
-                else
-                {
-                    richTextBox1.SelectionColor = Color.Black;
-                    return;
-                }
+                //if (log.Contains("ERROR") || log.Contains("Exception"))
+                //{
+                //    richTextBox1.SelectionColor = Color.Red;
+                //    return;
+                //}
+                //if (log.Contains("[qsign]"))
+                //{
+                //    richTextBox1.SelectionColor = Color.FromArgb(255, 215, 0);
+                //    return;
+                //}
+                //else
+                //{
+                //    richTextBox1.SelectionColor = Color.Black;
+                //    return;
+                //}
             }
+                lenght = richTextBox1.Text.Length;
+                richTextBox1.Select(richTextBox1.TextLength, 0);
+                richTextBox1.ScrollToCaret();
+                int maxLines = 100;
 
+                // 检查行数是否超过最大行数
+                if (richTextBox1.Lines.Length > maxLines)
+                {
+                    // 获取超过最大行数的行数
+                    int linesToRemove = richTextBox1.Lines.Length - maxLines;
+
+                    // 删除多余的行
+                    richTextBox1.Text = string.Join(Environment.NewLine, richTextBox1.Lines.Skip(linesToRemove));
+                }
+
+            }
+                               ));
         }
         private void DrawFont()
         {
@@ -512,11 +528,7 @@ namespace qsign
             }
         }
 
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-            richTextBox1.SelectionStart = richTextBox1.Text.Length; //Set the current caret position at the end
-            richTextBox1.ScrollToCaret(); //Now scroll it automatically
-        }
+        
 
         private void richTextBox1_LinkClicked(object sender, LinkClickedEventArgs e)
         {
@@ -570,10 +582,12 @@ namespace qsign
             this.Hide();
             notifyIcon1.Visible = true;
             this.ShowInTaskbar = false;
+            
         }
-
+        TimeSpan prevCpuTime = TimeSpan.Zero;
         private void DisplayResourceUsage(int port)
         {
+            
             int targetPID;
             Process targetProcess;
 
@@ -592,17 +606,23 @@ namespace qsign
             catch (ArgumentException)
             {
                 targetProcess = null; // Set process instance to null if PID is invalid
+                return;
             }
 
             // Get memory and CPU information
             double memoryUsageMB = targetProcess != null ? targetProcess.WorkingSet64 / (1024.0 * 1024.0) : 0; // Memory usage in MB
-            double cpuUsagePercentage = targetProcess != null ? (targetProcess.TotalProcessorTime.TotalMilliseconds /
-                                   (Environment.ProcessorCount * 1000)) * 100 : 0; // CPU usage in percentage
+            PerformanceCounter curtime = new PerformanceCounter("Process", "% Processor Time", targetProcess.ProcessName);
+            PerformanceCounter totalcpu = new PerformanceCounter("Processor", "% Processor Time", "_Total");
+            TimeSpan curCpuTime = targetProcess.TotalProcessorTime;
+            double value = (curCpuTime - prevCpuTime).TotalMilliseconds / 1000 / Environment.ProcessorCount * 100;
+            prevCpuTime = curCpuTime;
+            //double cpuUsagePercentage = targetProcess != null ? (targetProcess.TotalProcessorTime.TotalMilliseconds /
+            //(Environment.ProcessorCount * 1000)) * 100 : 0; // CPU usage in percentage
 
             // Update the information in the Label
             label7.Invoke((Action)(() =>
             {
-                label7.Text = string.Format("内存使用量: {0:F2} MB   CPU使用率: {1:F2}%", memoryUsageMB, cpuUsagePercentage);
+                label7.Text = string.Format("内存使用量: {0:F2} MB   CPU使用率: {1:F2}%", memoryUsageMB, value);
             }));
         }
 
@@ -644,6 +664,11 @@ namespace qsign
         private void label7_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void richTextBox1_TextChanged_1(object sender, EventArgs e)
+        {
+            
         }
     }
 }

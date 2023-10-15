@@ -3,7 +3,7 @@
 
 # unidbg-fetch-qsign-gui
 
-使用[unidbg-fetch-qsign 1.2.1](https://github.com/fuqiuluo/unidbg-fetch-qsign/releases/tag/1.2.1)，内置JRE环境，一键启动/停止/切换版本
+使用[unidbg-fetch-qsign 1.1.9](https://github.com/fuqiuluo/unidbg-fetch-qsign/releases/tag/1.1.9)，内置JRE环境，一键启动/停止/切换版本
 
 仅适用于Windows（不支持Windows 7），Linux平台请移步[unidbg-fetch-qsign-shell](https://github.com/CikeyQi/unidbg-fetch-qsign-shell)<br>
 

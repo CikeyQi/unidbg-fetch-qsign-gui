@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "F:\\unidbg-fetch-qsign-gui\\qsign.csproj": {}
+    "C:\\Users\\苏沫柒\\Documents\\GitHub\\unidbg-fetch-qsign-gui\\qsign.csproj": {}
   },
   "projects": {
-    "F:\\unidbg-fetch-qsign-gui\\qsign.csproj": {
+    "C:\\Users\\苏沫柒\\Documents\\GitHub\\unidbg-fetch-qsign-gui\\qsign.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\unidbg-fetch-qsign-gui\\qsign.csproj",
+        "projectUniqueName": "C:\\Users\\苏沫柒\\Documents\\GitHub\\unidbg-fetch-qsign-gui\\qsign.csproj",
         "projectName": "unidbg-fetch-qsign-gui",
-        "projectPath": "F:\\unidbg-fetch-qsign-gui\\qsign.csproj",
-        "packagesPath": "C:\\Users\\31463\\.nuget\\packages\\",
-        "outputPath": "F:\\unidbg-fetch-qsign-gui\\obj\\",
+        "projectPath": "C:\\Users\\苏沫柒\\Documents\\GitHub\\unidbg-fetch-qsign-gui\\qsign.csproj",
+        "packagesPath": "C:\\Users\\苏沫柒\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\苏沫柒\\Documents\\GitHub\\unidbg-fetch-qsign-gui\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\31463\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\苏沫柒\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -64,7 +64,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

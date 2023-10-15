@@ -34,7 +34,7 @@ namespace qsign
                 process.Start();
                 output = process.StandardOutput.ReadToEnd();
             }
-            System.Diagnostics.Debug.WriteLine(output);
+            ///System.Diagnostics.Debug.WriteLine(output);
             string[] lines = output.Split("\n");
             List<Dictionary<string, string>> result = new List<Dictionary<string, string>>();
             foreach (string line in lines)
