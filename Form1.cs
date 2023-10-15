@@ -1,10 +1,8 @@
-using System.Diagnostics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Diagnostics;
 using System.Net;
-using System.IO;
 using System.Text.RegularExpressions;
-using System.Windows.Forms;
 
 namespace qsign
 {
@@ -13,7 +11,7 @@ namespace qsign
         public Main()
         {
             InitializeComponent();
-
+            this.FormClosing += Main_FormClosing;
         }
         private void label1_Click(object sender, EventArgs e)
         { }
@@ -417,9 +415,6 @@ namespace qsign
                 richTextBox1.AppendText(logs + "\n");
                 foreach (string log in logss)
             {
-                
-                
-                
                // int currentLength = richTextBox1.Lines.Length;
                 //int lineFirstCharIndex = richTextBox1.GetFirstCharIndexFromLine(currentLength);
                 //if (lineFirstCharIndex == -1) { return; }
@@ -480,7 +475,6 @@ namespace qsign
             System.Drawing.Text.PrivateFontCollection pfc = new System.Drawing.Text.PrivateFontCollection();
             pfc.AddFontFile("PingFang.ttf");
             Font myFont = new Font(pfc.Families[0], 12, FontStyle.Regular);
-            ///this.Font = myFont;
             textBox1.Font = myFont;
             textBox2.Font = myFont;
             textBox3.Font = myFont;
@@ -517,9 +511,7 @@ namespace qsign
             string currentDirectory = Environment.CurrentDirectory;
             string path = currentDirectory + "\\txlib";
             string[] folders = Directory.GetDirectories(path);
-#pragma warning disable CS8602 // 解引用可能出现空引用。
             System.Diagnostics.Debug.WriteLine(System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString());
-#pragma warning restore CS8602 // 解引用可能出现空引用。
             Text = Text.Replace("%v", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString());
             foreach (string folder in folders)
             {
@@ -616,54 +608,10 @@ namespace qsign
             TimeSpan curCpuTime = targetProcess.TotalProcessorTime;
             double value = (curCpuTime - prevCpuTime).TotalMilliseconds / 1000 / Environment.ProcessorCount * 100;
             prevCpuTime = curCpuTime;
-            //double cpuUsagePercentage = targetProcess != null ? (targetProcess.TotalProcessorTime.TotalMilliseconds /
-            //(Environment.ProcessorCount * 1000)) * 100 : 0; // CPU usage in percentage
-
-            // Update the information in the Label
             label7.Invoke((Action)(() =>
             {
                 label7.Text = string.Format("内存使用量: {0:F2} MB   CPU使用率: {1:F2}%", memoryUsageMB, value);
             }));
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void richTextBox1_TextChanged_1(object sender, EventArgs e)
