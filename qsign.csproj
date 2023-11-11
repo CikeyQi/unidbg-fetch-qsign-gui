@@ -13,7 +13,7 @@
     <PackageProjectUrl>https://github.com/CikeyQi/unidbg-fetch-qsign-gui</PackageProjectUrl>
     <FileVersion></FileVersion>
     <NeutralLanguage>zh-CN</NeutralLanguage>
-    <AssemblyVersion>1.0.5.0</AssemblyVersion>
+    <AssemblyVersion>1.0.6.0</AssemblyVersion>
     <PackageId>unidbg-fetch-qsign-gui</PackageId>
   </PropertyGroup>
 

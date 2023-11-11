@@ -64,7 +64,7 @@ namespace qsign
                             label5.Text = "正在运行";
                             DisplayResourceUsage(port);
                             label5.ForeColor = Color.Green;
-                            
+
                         }));
                         if (checknum == 1)
                         {
@@ -93,6 +93,48 @@ namespace qsign
                         label5.Text = "状态异常";
                         label7.Text = "内存使用量: 0 MB   CPU使用率: 0%";
                         label5.ForeColor = Color.Red;
+                        string targetPid = get_target_id(port);
+                        if (targetPid != "")
+                        {
+                            System.Diagnostics.Debug.WriteLine(targetPid);
+                            var fileName = "cmd";
+                            var arguments = "/c taskkill /F /PID " + targetPid;
+                            // 创建进程启动信息
+                            var processStartInfo = new ProcessStartInfo()
+                            {
+                                FileName = fileName,
+                                Arguments = arguments,
+                                RedirectStandardOutput = true,
+                                CreateNoWindow = true,
+                                UseShellExecute = false
+                            };
+                            // 执行命令
+                            var process1 = Process.Start(processStartInfo);
+                            process1.WaitForExit();
+                            while (newThread.IsAlive)
+                            {
+                                Thread.Sleep(100);
+                            }
+                        }
+                        flag = true;
+                        checknum = 0;
+                        richTextBox1.Clear();
+                        newThread = new Thread(new ThreadStart(NewThread));
+                        CheckThread = new Thread(new ThreadStart(check));
+                        run_state = true;
+                        button1.Text = "停止";
+                        newThread.IsBackground = true;
+                        newThread.Start();
+                        CheckThread.IsBackground = true;
+                        CheckThread.Start();
+                        comboBox1.Enabled = false;
+                        textBox1.Enabled = false;
+                        textBox3.Enabled = false;
+                        textBox2.Enabled = false;
+                        checkBox1.Enabled = false;
+                        checkBox2.Enabled = false;
+                        checkBox3.Enabled = false;
+                        checkBox4.Enabled = false;
                     }));
                 }
                 try
@@ -268,10 +310,10 @@ namespace qsign
             {
                 if (!string.IsNullOrEmpty(args.Data))
                 {
-                    
+
                     ThreadPool.QueueUserWorkItem(new WaitCallback(Add_log), args.Data + "\n");
-                    
-                   
+
+
 
                 }
             };
@@ -399,7 +441,7 @@ namespace qsign
         {
             Process.Start(new ProcessStartInfo()
             {
-                FileName = "https://jq.qq.com/?_wv=1027&k=FZUabhdf",
+                FileName = "http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=l6BrF5gd4T7QoUv_OXKTQqlRewtGe-lU&authKey=52bpY2z9OVc0pjVqkWMOt9PHAq20cNhk%2BzL1blVn0S%2B0U6znaVFjseaYiv5QG%2Fxu&noverify=0&group_code=551081559",
                 UseShellExecute = true
             });
         }
@@ -414,44 +456,44 @@ namespace qsign
             {
                 richTextBox1.AppendText(logs + "\n");
                 foreach (string log in logss)
-            {
-               // int currentLength = richTextBox1.Lines.Length;
-                //int lineFirstCharIndex = richTextBox1.GetFirstCharIndexFromLine(currentLength);
-                //if (lineFirstCharIndex == -1) { return; }
-                //richTextBox1.Select(lenght, (log + "\n").Length);
-                //if (log.Contains("INFO"))
-                //{
-                //    richTextBox1.SelectionColor = Color.DeepSkyBlue;
+                {
+                    // int currentLength = richTextBox1.Lines.Length;
+                    //int lineFirstCharIndex = richTextBox1.GetFirstCharIndexFromLine(currentLength);
+                    //if (lineFirstCharIndex == -1) { return; }
+                    //richTextBox1.Select(lenght, (log + "\n").Length);
+                    //if (log.Contains("INFO"))
+                    //{
+                    //    richTextBox1.SelectionColor = Color.DeepSkyBlue;
 
-                //    return;
-                //}
-                //if (log.Contains("DEBUG"))
-                //{
-                //    richTextBox1.SelectionColor = Color.White;
-                //    return;
-                //}
-                //if (log.Contains("WARNING"))
-                //{
-                //    richTextBox1.SelectionColor = Color.FromArgb(255, 215, 0);
-                //    return;
-                //}
+                    //    return;
+                    //}
+                    //if (log.Contains("DEBUG"))
+                    //{
+                    //    richTextBox1.SelectionColor = Color.White;
+                    //    return;
+                    //}
+                    //if (log.Contains("WARNING"))
+                    //{
+                    //    richTextBox1.SelectionColor = Color.FromArgb(255, 215, 0);
+                    //    return;
+                    //}
 
-                //if (log.Contains("ERROR") || log.Contains("Exception"))
-                //{
-                //    richTextBox1.SelectionColor = Color.Red;
-                //    return;
-                //}
-                //if (log.Contains("[qsign]"))
-                //{
-                //    richTextBox1.SelectionColor = Color.FromArgb(255, 215, 0);
-                //    return;
-                //}
-                //else
-                //{
-                //    richTextBox1.SelectionColor = Color.Black;
-                //    return;
-                //}
-            }
+                    //if (log.Contains("ERROR") || log.Contains("Exception"))
+                    //{
+                    //    richTextBox1.SelectionColor = Color.Red;
+                    //    return;
+                    //}
+                    //if (log.Contains("[qsign]"))
+                    //{
+                    //    richTextBox1.SelectionColor = Color.FromArgb(255, 215, 0);
+                    //    return;
+                    //}
+                    //else
+                    //{
+                    //    richTextBox1.SelectionColor = Color.Black;
+                    //    return;
+                    //}
+                }
                 lenght = richTextBox1.Text.Length;
                 richTextBox1.Select(richTextBox1.TextLength, 0);
                 richTextBox1.ScrollToCaret();
@@ -520,7 +562,7 @@ namespace qsign
             }
         }
 
-        
+
 
         private void richTextBox1_LinkClicked(object sender, LinkClickedEventArgs e)
         {
@@ -574,12 +616,12 @@ namespace qsign
             this.Hide();
             notifyIcon1.Visible = true;
             this.ShowInTaskbar = false;
-            
+
         }
         TimeSpan prevCpuTime = TimeSpan.Zero;
         private void DisplayResourceUsage(int port)
         {
-            
+
             int targetPID;
             Process targetProcess;
 
@@ -616,7 +658,12 @@ namespace qsign
 
         private void richTextBox1_TextChanged_1(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
