@@ -19,6 +19,8 @@ Linux平台请移步 [unidbg-fetch-qsign-shell](https://github.com/CikeyQi/unidb
 
 - 如需修改配置项，点击相应列即可设置
 
+- 使用期间遇到问题可以加群与我们反馈：**551081559**
+
 ## 致谢
 
 - unidbg-fetch-qsign项目：[unidbg-fetch-qsign](https://github.com/fuqiuluo/unidbg-fetch-qsign)
