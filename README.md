@@ -1,5 +1,5 @@
 
-![📚 封面](https://github.com/CikeyQi/unidbg-fetch-qsign-gui/assets/61369914/18796c21-895e-416d-b5c0-2fffc366451c)
+![📚 封面](https://github.com/CikeyQi/unidbg-fetch-qsign-gui/assets/61369914/8ccdaf32-07c7-4ada-8213-1831698b09c9)
 
 # unidbg-fetch-qsign-gui
 
