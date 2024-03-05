@@ -1,6 +1,6 @@
 ## 使用前须知：本仓库只更新版本文件，至于unidbg-fetch-qsign本体已经停止更新，新的版本文件有概率被检测导致封号，请谨慎使用，如果可以请尽量使用旧的版本
 
-![📚 封面](https://github.com/CikeyQi/unidbg-fetch-qsign-gui/assets/61369914/8ccdaf32-07c7-4ada-8213-1831698b09c9)
+![📚 封面](https://github.com/CikeyQi/unidbg-fetch-qsign-gui/assets/61369914/26b9ec4b-e7f0-4965-848b-d729cdee531a)
 
 # unidbg-fetch-qsign-gui
 
